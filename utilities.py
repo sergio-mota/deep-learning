@@ -15,7 +15,8 @@ def get_cifar10_loaders(
     ) -> dict[str, DataLoader]:
     transform = v2.Compose([
         v2.ToImage(),
-        v2.ToDtype(torch.float32, scale=True)
+        v2.ToDtype(torch.float32, scale=True),
+        v2.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
     ])
 
     train_dataset = CIFAR10(
