@@ -7,8 +7,8 @@ import yaml
 from torch.utils.tensorboard import SummaryWriter
 
 from src.data_loaders import get_cifar10_loaders as get_loaders
-from src.models import CIFAR10 as Model
-from src.trainer import train
+from src.models import ResNet18_Cifar as Model
+from src.trainer import train, validate
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -83,12 +83,14 @@ def main():
         optimizer,
         criterion,
         data_loaders["train"],
-        data_loaders["test"],
+        data_loaders["validation"],
         device,
         writer,
         config["hparams"]["num_epochs"],
         scheduler=scheduler
     )
+
+    loss, accuracy = validate(model, criterion, data_loaders["test"], device)
 
 if __name__ == "__main__":
     main()
