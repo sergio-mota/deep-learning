@@ -73,8 +73,6 @@ def train_batch(
         batch : tuple[torch.Tensor, torch.Tensor],
         device : torch.device
     ):
-    model.train()
-
     inputs, targets = batch
     inputs, targets = inputs.to(device), targets.to(device)
 
@@ -96,6 +94,8 @@ def train_epoch(
         writer : torch.utils.tensorboard.SummaryWriter,
         epoch_idx : int
     ):
+    model.train()
+
     num_batches = len(data_loader)
     report_interval = num_batches // 4  # Report every 25% of the epoch
 
@@ -122,8 +122,6 @@ def validate_batch(
         batch : tuple[torch.Tensor, torch.Tensor],
         device : torch.device
     ):
-    model.eval()
-
     inputs, targets = batch
     inputs, targets = inputs.to(device), targets.to(device)
 
@@ -143,6 +141,8 @@ def validate(
         data_loader : torch.utils.data.DataLoader,
         device : torch.device
     ):
+    model.eval()
+
     loss = 0.
     num_correct = 0
     total = 0

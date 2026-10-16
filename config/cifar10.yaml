@@ -2,9 +2,9 @@ experiment:
   name: cifar10
 data:
   root: data/cifar10/
-  num_workers: 2
+  num_workers: 8
 hparams:
-  batch_size: 32
+  batch_size: 128
   criterion: CE
   optimizer: SGD
   scheduler: CosineAnnealingLR

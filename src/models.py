@@ -14,9 +14,7 @@ class CIFAR10(torch.nn.Module):
         self.fc2 = FC(256, 10, True)
 
     def forward(self, x):
-        x = x + self.cnn1(x)
-        x = x + self.cnn2(x)
-        x = x + self.cnn3(x)
+        x = self.cnn3(self.cnn2(self.cnn1(x)))
         x = self.dropout(torch.flatten(x, 1))
         x = self.fc2(self.fc1(x))
         return x
