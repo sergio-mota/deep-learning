@@ -6,3 +6,7 @@ data/
 
 # IDE
 .vscode/
+
+# Log
+mlflow.db
+runs/

@@ -1,5 +1,14 @@
+experiment:
+  name: cifar10
 data:
   root: data/cifar10/
   num_workers: 2
 hparams:
   batch_size: 32
+  criterion: CE
+  optimizer: SGD
+  scheduler: CosineAnnealingLR
+  learning_rate: 1.0e-2
+  momentum: 0.9
+  weight_decay: 1.0e-4
+  num_epochs: 100
